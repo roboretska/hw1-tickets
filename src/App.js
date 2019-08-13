@@ -1,25 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import {AppProvider} from './context'
+import * as values from './store';
+import TicketsList from './components/TicketsList'
+import Cart from './components/Cart'
+
 
 function App() {
+  const [store, setStore] = useState(values);
+  const addToCart = (ticket) => {
+      setStore(prevState => {
+          let previousCart = [...prevState.cartList];
+          const isPresent = previousCart.findIndex(t => t.id === ticket.id);
+          if (~isPresent){
+              ++previousCart[isPresent].amount
+          } else {
+              previousCart = [...previousCart, ticket];
+          }
+          return {
+            ...prevState ,
+              cartList: previousCart
+          }
+      })
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <AppProvider value={store}>
+          <Cart />
+          <TicketsList addToCart={addToCart}/>
+      </AppProvider>
   );
 }
 
