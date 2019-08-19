@@ -6,7 +6,7 @@ let ticketsList = [
         price: '400$',
         location: 'Lviv',
         description: 'Some info',
-        amount: 400
+        amount: 3
     },
     {
         id: 2,

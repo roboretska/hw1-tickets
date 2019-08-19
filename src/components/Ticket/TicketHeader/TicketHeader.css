@@ -1,0 +1,14 @@
+.ticket-container-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background: cornflowerblue;
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+}
+
+.header-button{
+    background: transparent;
+    border: none;
+}

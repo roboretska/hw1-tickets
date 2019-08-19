@@ -11,9 +11,13 @@ export default ({removeFromCart}) => {
         updateTicketsList(state.cartList);
     }, [state.cartList.length]);
 
-    console.log('removeFromCart', removeFromCart);
-
-    return <div className='cart-container'>
-        {ticketsList.map((ticket) => <Ticket key={`${ticket.id}cart`} ticket={ticket} onClickEvent={() => removeFromCart(ticket)}/>)}
+    return <div className='cart-container  flexible-list'>
+        {ticketsList.map((ticket) =>
+            <Ticket
+                key={`${ticket.id}cart`}
+                ticket={ticket}
+                onClickEvent={() => removeFromCart(ticket)}
+                fromList={false}
+            />)}
     </div>
 };
