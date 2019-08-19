@@ -14,6 +14,7 @@ function App() {
           if (~isPresent){
               ++previousCart[isPresent].amount
           } else {
+              ticket.amount = 1;
               previousCart = [...previousCart, ticket];
           }
           return {
@@ -22,10 +23,27 @@ function App() {
           }
       })
   };
+  const removeFromCart = (ticket) => {
+      setStore(prevState => {
+          let cartList = [...prevState.cartList];
+          const element = cartList.find(t => t.id === ticket.id);
+          if (element.amount > 1){
+              --element.amount;
+          } else {
+              cartList = cartList.filter((t) => t.i !== ticket.id);
+          }
+          return {
+              ...prevState ,
+              cartList: cartList
+          }
+      });
+      console.log(ticket);
+  };
+  console.log('removeFromCart',removeFromCart)
   return (
       <AppProvider value={store}>
-          <Cart />
-          <TicketsList addToCart={addToCart}/>
+          <Cart removeFromCart={removeFromCart} />
+          <TicketsList addToCart={addToCart} />
       </AppProvider>
   );
 }

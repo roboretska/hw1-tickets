@@ -9,10 +9,11 @@ export default ({addToCart}) => {
         updateTicketsList(state.ticketsList);
     }, [state.ticketsList.length]);
 
-        console.log('Tickets', state);
+    console.log('Tickets', state);
     console.log(ticketsList);
 
     return ticketsList.map((ticket) => <Ticket
         ticket={ticket}
-        addToCart={() => addToCart(ticket)}/>);
+        onClickEvent={() => addToCart(ticket)}
+    />);
 };

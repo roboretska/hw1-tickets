@@ -1,8 +1,8 @@
 import React from 'react'
 
-export  default ({name, addToCart}) => (
+export  default ({name, onClickEvent}) => (
     <div className='ticket-container-header'>
         {name}
-        <button onClick={addToCart}>Add to cart</button>
+        <button onClick={onClickEvent}>Add to cart</button>
     </div>
 )
